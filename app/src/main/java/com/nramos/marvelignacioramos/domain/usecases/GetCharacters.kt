@@ -1,5 +1,6 @@
 package com.nramos.marvelignacioramos.domain.usecases
 
+/*
 import com.nramos.marvelignacioramos.domain.repositories.CharactersRepository
 import javax.inject.Inject
 
@@ -11,4 +12,4 @@ class GetCharacters @Inject constructor(
         charactersRepository.test()
     }
 
-}
+}*/

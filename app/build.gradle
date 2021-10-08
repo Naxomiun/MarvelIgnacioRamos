@@ -37,6 +37,9 @@ android {
 }
 
 dependencies {
+    api project(path: ':domain')
+    api project(path: ':data')
+
     implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.2.0")
     implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
     implementation 'androidx.core:core-ktx:1.6.0'
@@ -60,7 +63,7 @@ dependencies {
     //Retrofit
     implementation 'com.squareup.retrofit2:retrofit:2.9.0'
     implementation "com.squareup.okhttp3:logging-interceptor:4.9.1"
-    implementation 'com.squareup.retrofit2:converter-gson:2.9.0'
+    implementation "com.squareup.retrofit2:converter-moshi:2.9.0"
 
     testImplementation 'junit:junit:4.+'
     androidTestImplementation 'androidx.test.ext:junit:1.1.3'

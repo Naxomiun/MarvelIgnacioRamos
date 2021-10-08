@@ -1,7 +1,7 @@
 package com.nramos.marvelignacioramos.ui.di
 
-import com.nramos.marvelignacioramos.domain.repositories.CharactersRepository
-import com.nramos.marvelignacioramos.domain.usecases.GetCharacters
+import com.nramos.domain.repositories.CharactersRepository
+import com.nramos.domain.usecases.GetCharacters
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn

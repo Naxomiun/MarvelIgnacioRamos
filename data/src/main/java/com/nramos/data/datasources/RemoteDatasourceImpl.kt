@@ -33,10 +33,14 @@ class RemoteDatasourceImpl @Inject constructor(
             )
             if (response.isSuccessful)
                 response.body()?.let {
-                    eitherSuccess(it.toDomain())
+                    when(it.code) {
+                        200 -> eitherSuccess(it.toDomain()) //TODO futurible: handle every status code and replace it with an enum
+                        //404 -> eitherFailure(ResponseError.NotFound)
+                        //500 -> eitherFailure(ResponseError.InternalServerError)
+                        else -> eitherFailure(ResponseError.Generic(it.status))
+                    }
                 } ?: eitherFailure(ResponseError.Generic("Error: empty response"))
-            else
-                eitherFailure(ResponseError.Generic(response.message()))
+            else eitherFailure(ResponseError.Generic("Error: Not successful")) //TODO futurible: replace by deserializing it.ResponseBody() to get detailed info
         } catch (exception : Exception) {
             eitherFailure(ResponseError.Network)
         }

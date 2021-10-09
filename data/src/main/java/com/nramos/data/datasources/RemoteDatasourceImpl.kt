@@ -17,16 +17,16 @@ class RemoteDatasourceImpl @Inject constructor(
 
     override suspend fun getMarvelCharacters(
         orderBy: String,
-        thresholdSize: Int,
-        limitSize: Int,
+        limit: Int,
+        offset: Int,
         timestamp: String,
         hash: String
     ): Either<List<MarvelHero>, ResponseError> {
         return try {
             val response = marvelService.getCharacters(
                 orderBy,
-                thresholdSize,
-                limitSize,
+                limit,
+                offset,
                 timestamp,
                 PUBLIC_API_KEY,
                 hash

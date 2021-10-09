@@ -1,6 +1,6 @@
 package com.nramos.domain.model
 
-sealed interface ResponseError  {
-    data class Generic(val message : CharSequence) : ResponseError
-    object Network : ResponseError
+sealed class ResponseError(val message: CharSequence)  {
+    data class Generic(val errorMessage : CharSequence) : ResponseError(message = errorMessage)
+    object Network : ResponseError(message = "Connection error")
 }

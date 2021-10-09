@@ -16,8 +16,8 @@ class CharactersRepositoryImpl @Inject constructor(
 ) : CharactersRepository {
 
     companion object{
-        const val NETWORK_LIMIT_CHARACTERS = 100 // API limit of 100
-        const val THRESHOLD_SIZE = 25
+        const val LIMIT = 100 // API limit of 100
+        const val OFFSET = 0 //
     }
 
     private val ts = System.currentTimeMillis()
@@ -30,9 +30,9 @@ class CharactersRepositoryImpl @Inject constructor(
 
     override suspend fun getCharacters(): Either<List<MarvelHero>, ResponseError> {
         return remoteDatasource.getMarvelCharacters(
-            "",
-            THRESHOLD_SIZE,
-            NETWORK_LIMIT_CHARACTERS,
+            "name",
+            LIMIT,
+            OFFSET,
             ts.toString(),
             hash
         )

@@ -14,7 +14,9 @@ class HeroAdapter : ListAdapter<MarvelHero, HeroAdapter.HeroViewHolder>(HeroDiff
     class HeroViewHolder(private val binding: ItemHeroPreviewBinding) : RecyclerView.ViewHolder(binding.root) {
         fun bind(hero: MarvelHero) = with(binding) {
             tvHeroName.text = hero.name
-            ivHeroPreview.load(hero.thumbnail)
+            ivHeroPreview.load(hero.thumbnail) {
+                crossfade(true)
+            }
         }
     }
 

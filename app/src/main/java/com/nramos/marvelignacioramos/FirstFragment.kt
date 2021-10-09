@@ -55,18 +55,30 @@ class FirstFragment : Fragment() {
 
     private fun renderState(state : State) {
         when(state) {
-            is Error -> {
-
-            }
+            is Error -> configErrorState(state)
             is Loaded -> configLoadedState(state)
-            is Loading -> {
-
-            }
+            is Loading -> configLoadingState()
         }
     }
 
-    private fun configLoadedState(state : Loaded) = with(state) {
-        heroAdapter.submitList(this.heroes)
+    private fun configLoadedState(state : Loaded) = with(binding) {
+        heroAdapter.submitList(state.heroes)
+        tvErrorMessage.gone()
+        rvHeroList.visible()
+        progressCircular.gone()
+    }
+
+    private fun configErrorState(state : Error) = with(binding) {
+        tvErrorMessage.text = state.error.message
+        tvErrorMessage.visible()
+        rvHeroList.gone()
+        progressCircular.gone()
+    }
+
+    private fun configLoadingState() = with(binding) {
+        tvErrorMessage.gone()
+        rvHeroList.gone()
+        progressCircular.visible()
     }
 
     override fun onDestroyView() {

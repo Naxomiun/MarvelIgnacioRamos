@@ -20,4 +20,25 @@
         tools:itemCount="6"
         tools:listitem="@layout/item_hero_preview" />
 
+    <com.google.android.material.progressindicator.CircularProgressIndicator
+        android:id="@+id/progress_circular"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:indeterminate="true"
+        android:indeterminateTint="@color/purple_500"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"/>
+
+    <TextView
+        android:id="@+id/tv_error_message"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="#EA2323"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"/>
+
 </androidx.constraintlayout.widget.ConstraintLayout>

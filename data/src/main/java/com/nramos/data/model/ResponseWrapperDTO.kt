@@ -5,7 +5,7 @@ data class ResponseWrapperDTO(
     val attributionText: String,
     val code: Int,
     val copyright: String,
-    val data: DataWrapperDTO,
+    val data: DataWrapperDTO?,
     val etag: String,
     val status: String
 )

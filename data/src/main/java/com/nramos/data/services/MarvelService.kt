@@ -9,7 +9,7 @@ import retrofit2.http.Query
 interface MarvelService {
 
     @GET(CHARACTERS_ENDPOINT)
-    suspend fun getCharactersAsync(
+    suspend fun getCharacters(
         @Query("orderBy") orderBy: String,
         @Query("limit") limit: Int,
         @Query("offset") offset: Int,

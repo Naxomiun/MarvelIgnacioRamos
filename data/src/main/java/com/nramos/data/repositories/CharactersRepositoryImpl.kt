@@ -2,12 +2,9 @@ package com.nramos.data.repositories
 
 import com.nramos.data.PRIVATE_API_KEY
 import com.nramos.data.PUBLIC_API_KEY
-import com.nramos.data.services.MarvelService
-import com.nramos.data.toDomain
 import com.nramos.domain.Either
-import com.nramos.domain.eitherFailure
-import com.nramos.domain.eitherSuccess
-import com.nramos.domain.model.Error
+import com.nramos.domain.datasources.RemoteDatasource
+import com.nramos.domain.model.ResponseError
 import com.nramos.domain.model.MarvelHero
 import com.nramos.domain.repositories.CharactersRepository
 import java.math.BigInteger
@@ -15,7 +12,7 @@ import java.security.MessageDigest
 import javax.inject.Inject
 
 class CharactersRepositoryImpl @Inject constructor(
-    val marvelService: MarvelService
+    private val remoteDatasource: RemoteDatasource
 ) : CharactersRepository {
 
     companion object{
@@ -31,18 +28,13 @@ class CharactersRepositoryImpl @Inject constructor(
         return BigInteger(1, md.digest(toByteArray())).toString(16).padStart(32, '0')
     }
 
-    override suspend fun getCharacters() : Either<List<MarvelHero>, Error> {
-        val response = marvelService.getCharactersAsync(
+    override suspend fun getCharacters(): Either<List<MarvelHero>, ResponseError> {
+        return remoteDatasource.getMarvelCharacters(
             "",
             THRESHOLD_SIZE,
             NETWORK_LIMIT_CHARACTERS,
             ts.toString(),
-            PUBLIC_API_KEY,
-            hash)
-
-        return if(response.isSuccessful)
-            eitherSuccess(response.body()?.toDomain() ?: emptyList())
-        else
-            eitherFailure(Error.Generic)
+            hash
+        )
     }
 }

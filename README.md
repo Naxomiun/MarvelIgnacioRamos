@@ -6,6 +6,7 @@ Android application that makes use of the [Marvel API](https://developer.marvel.
 
 - Clean architecture & SOLID principles
 - MVVM
+- Repository/Datasource pattern
 - Dependency Injection with Hilt
 - Multi Module
 - Coroutines
@@ -33,5 +34,6 @@ Contains UI. This includes ViewModels (and its respective DI), fragments, activi
 ### Futurible (due to lack of time)
 - Include pagination : Marvel API supports it.
 - Better error handling
+- Add LocalDatasource & Room
 - Improve UI
 - Animations on navigation

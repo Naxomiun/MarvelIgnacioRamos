@@ -24,7 +24,6 @@
         android:name="com.nramos.marvelignacioramos.ui.screens.herodetail.FragmentHeroDetail"
         android:label="@string/hero_detail_fragment"
         tools:layout="@layout/fragment_hero_detail" >
-
         <action
             android:id="@+id/action_SecondFragment_to_FirstFragment"
             app:destination="@id/FragmentHero" />

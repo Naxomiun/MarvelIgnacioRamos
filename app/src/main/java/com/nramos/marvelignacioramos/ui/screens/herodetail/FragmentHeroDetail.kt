@@ -22,7 +22,7 @@ class FragmentHeroDetail : Fragment() {
         val HERO_ID_BUNDLE_KEY = "heroId"
     }
 
-    private var _binding: FragmentHeroDetailBinding? = null
+    private var _binding: FragmentHeroDetailBinding? = null //TODO futurible: change to delegates
     private val binding get() = _binding!!
 
     private val viewModel: HeroDetailViewModel by viewModels()

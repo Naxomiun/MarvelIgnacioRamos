@@ -2,6 +2,7 @@ package com.nramos.data.repositories
 
 import com.nramos.data.PRIVATE_API_KEY
 import com.nramos.data.PUBLIC_API_KEY
+import com.nramos.data.md5Hash
 import com.nramos.domain.Either
 import com.nramos.domain.datasources.RemoteDatasource
 import com.nramos.domain.model.ResponseError
@@ -21,13 +22,9 @@ class CharactersRepositoryImpl @Inject constructor(
         const val OFFSET = 0 //
     }
 
+    //TODO futurible: move this
     private val ts = System.currentTimeMillis()
     private val hash = (ts.toString() + PRIVATE_API_KEY + PUBLIC_API_KEY).md5Hash()
-
-    fun String.md5Hash(): String {
-        val md = MessageDigest.getInstance("MD5")
-        return BigInteger(1, md.digest(toByteArray())).toString(16).padStart(32, '0')
-    }
 
     override suspend fun getCharacters(): Either<List<MarvelHero>, ResponseError> {
         //TODO futurible: check internet connection/cached results with localDatasource

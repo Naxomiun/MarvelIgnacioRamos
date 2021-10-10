@@ -5,7 +5,7 @@ Android application that makes use of the [Marvel API](https://developer.marvel.
 ## Features
 
 - Clean architecture & SOLID principles
-- MVVM arch
+- MVVM
 - Dependency Injection with Hilt
 - Multi Module
 - Coroutines

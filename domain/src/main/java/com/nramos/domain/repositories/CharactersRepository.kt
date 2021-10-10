@@ -8,4 +8,6 @@ interface CharactersRepository {
 
     suspend fun getCharacters() : Either<List<MarvelHero>, ResponseError>
 
+    suspend fun getCharacterDetail(id : Int) : Either<MarvelHero, ResponseError>
+
 }

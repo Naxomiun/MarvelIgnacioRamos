@@ -38,6 +38,9 @@ android {
 
 dependencies {
     api project(path: ':domain')
+
+    /*NOTE: UI shouldn't know data module. Hilt uses a monolithic component system that forces our modules to know all of them
+        in order to create the dependency graph. UI does not use any import from data module. */
     api project(path: ':data')
 
     implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.2.0")

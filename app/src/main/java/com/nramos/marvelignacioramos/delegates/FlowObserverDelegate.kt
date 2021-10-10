@@ -9,7 +9,6 @@ import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
 
-
 class FlowObserverDelegate<T>(lifecycleOwner: LifecycleOwner, private val flow: Flow<T>, private val collector: suspend (T) -> Unit) {
 
     private var job: Job? = null

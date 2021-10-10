@@ -33,20 +33,42 @@ class RemoteDatasourceImpl @Inject constructor(
             )
             if (response.isSuccessful)
                 response.body()?.let {
-                    when(it.code) {
-                        200 -> eitherSuccess(it.toDomain()) //TODO futurible: handle every status code and replace it with an enum
+                    when (it.code) {
+                        200 -> eitherSuccess(it.toDomain()) //TODO futurible: handle every status code and replace it with an enum and handler
                         //404 -> eitherFailure(ResponseError.NotFound)
                         //500 -> eitherFailure(ResponseError.InternalServerError)
                         else -> eitherFailure(ResponseError.Generic(it.status))
                     }
                 } ?: eitherFailure(ResponseError.Generic("Error: empty response"))
             else eitherFailure(ResponseError.Generic("Error: Not successful")) //TODO futurible: replace by deserializing it.ResponseBody() to get detailed info
-        } catch (exception : Exception) {
+        } catch (exception: Exception) {
             eitherFailure(ResponseError.Network)
         }
     }
 
-    override suspend fun getMarvelCharacterById(id: String): Either<MarvelHero, ResponseError> {
-        return eitherFailure(ResponseError.Generic("sad"))
+    override suspend fun getMarvelCharacterById(
+        id: Int,
+        timestamp: String,
+        hash: String
+    ): Either<MarvelHero, ResponseError> {
+        return try {
+            val response = marvelService.getCharacterDetail(
+                id,
+                timestamp,
+                PUBLIC_API_KEY,
+                hash
+            )
+
+            if (response.isSuccessful)
+                response.body()?.let {
+                    when (it.code) {
+                        200 -> eitherSuccess(it.toDomain())
+                        else -> eitherFailure(ResponseError.Generic(it.status))
+                    }
+                } ?: eitherFailure(ResponseError.Generic("Error: empty response"))
+            else eitherFailure(ResponseError.Generic("Error: Not successful"))
+        } catch (exception: Exception) {
+            eitherFailure(ResponseError.Network)
+        }
     }
 }

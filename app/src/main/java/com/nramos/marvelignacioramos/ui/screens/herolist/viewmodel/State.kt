@@ -1,4 +1,4 @@
-package com.nramos.marvelignacioramos
+package com.nramos.marvelignacioramos.ui.screens.herolist.viewmodel
 
 import com.nramos.domain.model.MarvelHero
 import com.nramos.domain.model.ResponseError

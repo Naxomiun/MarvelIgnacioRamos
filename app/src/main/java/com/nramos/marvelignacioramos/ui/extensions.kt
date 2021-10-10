@@ -1,4 +1,4 @@
-package com.nramos.marvelignacioramos
+package com.nramos.marvelignacioramos.ui
 
 import android.view.View
 import androidx.core.view.isVisible

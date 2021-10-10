@@ -13,6 +13,7 @@ import javax.inject.Inject
 
 class CharactersRepositoryImpl @Inject constructor(
     private val remoteDatasource: RemoteDatasource
+    //TODO futurible: create and inject localDatasource to load cached results if any
 ) : CharactersRepository {
 
     companion object{
@@ -29,6 +30,7 @@ class CharactersRepositoryImpl @Inject constructor(
     }
 
     override suspend fun getCharacters(): Either<List<MarvelHero>, ResponseError> {
+        //TODO futurible: check internet connection/cached results with localDatasource
         return remoteDatasource.getMarvelCharacters(
             "name",
             LIMIT,
@@ -36,5 +38,9 @@ class CharactersRepositoryImpl @Inject constructor(
             ts.toString(),
             hash
         )
+    }
+
+    override suspend fun getCharacterDetail(id : Int) : Either<MarvelHero, ResponseError> {
+        return remoteDatasource.getMarvelCharacterById(id, ts.toString(), hash)
     }
 }

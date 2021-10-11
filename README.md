@@ -31,7 +31,7 @@ Contains all business logic. Layer in charge of fetching data by implementing ou
 ### App (Presentation/UI)
 Contains UI. This includes ViewModels (and its respective DI), fragments, activities and delegates. It depends on domain.
 
-### Futurible (due to lack of time)
+### Futurible TODOs
 - Include pagination : Marvel API supports it.
 - Better error handling
 - Add LocalDatasource & Room
